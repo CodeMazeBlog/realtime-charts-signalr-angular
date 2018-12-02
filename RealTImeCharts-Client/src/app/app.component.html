@@ -1,0 +1,9 @@
+<div style="display: block">
+  <canvas baseChart
+          [datasets]="signalRService.data"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [legend]="chartLegend"
+          [chartType]="chartType"
+          [colors]="colors"></canvas>
+</div>
