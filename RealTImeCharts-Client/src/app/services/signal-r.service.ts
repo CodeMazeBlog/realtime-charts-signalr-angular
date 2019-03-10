@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@aspnet/signalr";
-import { ChartModel } from '../_interfaces/chartdata.model';
+import { ChartModel } from '../_interfaces/chartmodel.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignalRService {
-  public data: ChartModel[] = [{data:[], label:''}, {data:[], label:''}, {data:[], label:''}, {data:[], label:''}];
+  public data: ChartModel[];
+  public bradcastedData: ChartModel[];
 
 private hubConnection: signalR.HubConnection
 
@@ -21,10 +22,21 @@ private hubConnection: signalR.HubConnection
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
-  public addListener = () => {
-    this.hubConnection.on('receivechartdata', (data) => {
+  public addTransferChartDataListener = () => {
+    this.hubConnection.on('transferchartdata', (data) => {
       this.data = data;
       console.log(data);
     });
+  }
+
+  public broadcastChartData = () => {
+    this.hubConnection.invoke('broadcastchartdata', this.data)
+    .catch(err => console.error(err));
+  }
+
+  public addBroadcastChartDataListener = () => {
+    this.hubConnection.on('broadcastchartdata', (data) => {
+      this.bradcastedData = data;
+    })
   }
 }

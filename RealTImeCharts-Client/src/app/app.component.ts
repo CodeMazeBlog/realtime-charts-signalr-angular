@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SignalRService } from './services/signal-r.service';
-import { ChartModel } from './_interfaces/chartdata.model';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -29,7 +28,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.signalRService.startConnection();
-    this.signalRService.addListener();
+    this.signalRService.addTransferChartDataListener();
+    this.signalRService.addBroadcastChartDataListener();
     this.startHttpRequest();
   }
 
@@ -38,5 +38,10 @@ export class AppComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
       })
+  }
+
+  public chartClicked = (event) => {
+    console.log(event);
+    this.signalRService.broadcastChartData();
   }
 }
