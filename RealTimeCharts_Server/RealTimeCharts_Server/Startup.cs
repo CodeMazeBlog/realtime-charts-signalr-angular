@@ -29,15 +29,14 @@ namespace RealTimeCharts_Server
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
+                    builder => builder.WithOrigins("http://localhost:4200")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
 
             services.AddSignalR();
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +51,6 @@ namespace RealTimeCharts_Server
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
 
             app.UseSignalR(routes =>
@@ -60,6 +58,7 @@ namespace RealTimeCharts_Server
                 routes.MapHub<ChartHub>("/chart");
             });
 
+            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

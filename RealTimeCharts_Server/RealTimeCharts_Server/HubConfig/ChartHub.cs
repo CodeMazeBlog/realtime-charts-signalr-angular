@@ -9,6 +9,6 @@ namespace RealTimeCharts_Server.HubConfig
 {
     public class ChartHub: Hub
     {
-        public async Task SendChartData(List<ChartModel> data) => await Clients.All.SendAsync("receivechartdata", data);
+        public async Task BroadcastChartData(List<ChartModel> data) => await Clients.All.SendAsync("broadcastchartdata", data);
     }
 }

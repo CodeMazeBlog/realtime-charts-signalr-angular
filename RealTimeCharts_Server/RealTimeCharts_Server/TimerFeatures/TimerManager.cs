@@ -23,7 +23,7 @@ namespace RealTimeCharts_Server.TimerFeatures
         {
             _action();
 
-            if((DateTime.Now - TimerStarted).Seconds > 10)
+            if((DateTime.Now - TimerStarted).Seconds > 60)
             {
                 _timer.Dispose();
             }
