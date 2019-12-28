@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { SignalRService } from './services/signal-r.service';
 import { HttpClient } from '@angular/common/http';
@@ -20,9 +21,10 @@ export class AppComponent implements OnInit {
     }
   };
   public chartLabels: string[] = ['Real time data for the chart'];
-  public chartType: string = 'bar';
-  public chartLegend: boolean = true;
-  public colors: any[] = [{ backgroundColor: '#5491DA' }, { backgroundColor: '#E74C3C' }, { backgroundColor: '#82E0AA' }, { backgroundColor: '#E5E7E9' }]
+  public chartType = 'bar';
+  public chartLegend = true;
+  // tslint:disable-next-line:max-line-length
+  public colors: any[] = [{ backgroundColor: '#5491DA' }, { backgroundColor: '#E74C3C' }, { backgroundColor: '#82E0AA' }, { backgroundColor: '#E5E7E9' }];
 
   constructor(public signalRService: SignalRService, private http: HttpClient) { }
 
@@ -34,10 +36,10 @@ export class AppComponent implements OnInit {
   }
 
   private startHttpRequest = () => {
-    this.http.get('https://localhost:5001/api/chart')
+    this.http.get(environment.urlAddress + '/api/chart')
       .subscribe(res => {
         console.log(res);
-      })
+      });
   }
 
   public chartClicked = (event) => {
