@@ -1,3 +1,3 @@
-﻿# .NET Core with SignalR and Angular – Real-Time Charts
-### https://code-maze.com/netcore-signalr-angular/
-This repository contains source code for the ".NET Core with SignalR and Angular – Real-Time Charts" article on Code Maze blog
+﻿# .NET Core with SignalR and Angular – How to Send Client-Specific Messages with SignalR
+## https://code-maze.com/how-to-send-client-specific-messages-using-signalr
+This repository contains source code for the "How to Send Client-Specific Messages Using SignalR" article on Code Maze blog
