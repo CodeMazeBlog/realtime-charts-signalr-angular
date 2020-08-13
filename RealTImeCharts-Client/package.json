@@ -20,7 +20,7 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
-    "@aspnet/signalr": "^1.0.4",
+    "@aspnet/signalr": "^3.0.0-preview6.19307.2",
     "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
     "ng2-charts": "^1.6.0",
@@ -28,7 +28,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.13.9",
+    "@angular-devkit/build-angular": "^0.13.9",
     "@angular/cli": "~7.0.1",
     "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",

@@ -7,7 +7,6 @@ import { ChartModel } from '../_interfaces/chartmodel.model';
 })
 export class SignalRService {
   public data: ChartModel[];
-  public connectionId : string;
   public bradcastedData: ChartModel[];
 
 private hubConnection: signalR.HubConnection
@@ -15,12 +14,13 @@ private hubConnection: signalR.HubConnection
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
                             .withUrl('https://localhost:5001/chart')
+                            .withAutomaticReconnect()
+                            .configureLogging(signalR.LogLevel.Information)
                             .build();
 
     this.hubConnection
       .start()
       .then(() => console.log('Connection started'))
-      .then(() => this.getConnectionId())
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
@@ -31,17 +31,8 @@ private hubConnection: signalR.HubConnection
     });
   }
 
-  public getConnectionId = () => {
-    this.hubConnection.invoke('getconnectionid').then(
-      (data) => {
-        console.log(data);
-          this.connectionId = data;
-        }
-    ); 
-  }
-
   public broadcastChartData = () => {
-    this.hubConnection.invoke('broadcastchartdata', this.data, this.connectionId)
+    this.hubConnection.invoke('broadcastchartdata', this.data)
     .catch(err => console.error(err));
   }
 
