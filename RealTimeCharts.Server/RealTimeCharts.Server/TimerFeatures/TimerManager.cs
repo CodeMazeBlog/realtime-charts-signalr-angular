@@ -21,7 +21,7 @@
         {
             _action();
 
-            if ((DateTime.Now - TimerStarted).Seconds > 60)
+            if ((DateTime.Now - TimerStarted).TotalSeconds > 60)
             {
                 IsTimerStarted = false;
                 _timer.Dispose();
